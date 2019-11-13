@@ -75,7 +75,8 @@ export default {
             data: this.loginForm,
             method: 'post'
           }).then(result => {
-            console.log(result.data)
+            console.log(result.data.data.token)
+            window.localStorage.setItem('user-token', result.data.data.token)
           })
         }
       })
