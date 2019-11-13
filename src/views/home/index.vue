@@ -29,7 +29,9 @@
     <!-- 右侧大容器 -->
     <el-container>
       <!-- 头部 -->
-      <el-header>头部</el-header>
+      <el-header>
+        <layout-header></layout-header>
+      </el-header>
       <!-- 中部区域 -->
       <el-main>
         <!-- 二级路由容器 -->
@@ -40,11 +42,11 @@
 </template>
 
 <script>
-
+import layoutHeader from '../../components/layout-header.vue'
 export default {
   name: 'home',
   components: {
-
+    'layout-header': layoutHeader
   }
 }
 </script>
