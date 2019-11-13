@@ -30,6 +30,7 @@
 </template>
 
 <script>
+// import { log } from 'util'
 export default {
   data () {
     return {
@@ -66,9 +67,16 @@ export default {
   },
   methods: {
     login () {
-      this.$refs.formObj.validate(function (isok) {
+      this.$refs.formObj.validate((isok) => {
         if (isok) {
           // 如果成功，调用接口登录
+          this.$axios({
+            url: '/authorizations',
+            data: this.loginForm,
+            method: 'post'
+          }).then(result => {
+            console.log(result.data)
+          })
         }
       })
     }
