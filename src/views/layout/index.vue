@@ -9,14 +9,14 @@
       <el-menu router style="width:221px" active-text-color=" #ffd04b" background-color="#353b4c" text-color="#adafb5">
         <el-menu-item index="/">首页</el-menu-item>
         <el-submenu index="1">
-          <temlate slot="title">内容管理</temlate>
+          <template slot="title">内容管理</template>
           <el-menu-item index="/publish">发布文章</el-menu-item>
           <el-menu-item index="/article">内容列表</el-menu-item>
           <el-menu-item>评论列表</el-menu-item>
           <el-menu-item>素材管理</el-menu-item>
         </el-submenu>
  <el-submenu index="2">
-          <temlate slot="title">粉丝管理</temlate>
+          <template slot="title">粉丝管理</template>
           <el-menu-item>图文数据</el-menu-item>
           <el-menu-item>粉丝概况</el-menu-item>
           <el-menu-item>粉丝画像</el-menu-item>

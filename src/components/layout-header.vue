@@ -2,13 +2,13 @@
   <!-- 头部 -->
   <el-row type="flex" justify="space-between" align="middle">
       <!-- 左侧 -->
-      <el-clo :span="6" class="left">
+      <el-col :span="6" class="left">
           <i class="el-icon-s-fold">
               <span>江苏传智播客教育科技有限公司</span>
           </i>
-      </el-clo >
+      </el-col >
       <!-- 右侧 -->
-      <el-clo :span="3" class="right">
+      <el-col :span="3" class="right">
           <!-- 头像 -->
           <img src="../assets/img/avatar.jpg" alt="">
            <!-- 下拉菜单 -->
@@ -20,7 +20,7 @@
                    <el-dropdown-item @click.native="onlogout">退出</el-dropdown-item>
                </el-dropdown-menu>
            </el-dropdown>
-      </el-clo>
+      </el-col>
   </el-row>
 </template>
 
