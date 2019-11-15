@@ -1,20 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/home/index.vue'
+import layout from '../views/layout/index.vue'
 import Login from '../views/login'
+import Home from '@/views/home'
 Vue.use(VueRouter)
 
 const routes = [
 
+  // {
+  //   path: '/',
+  //   redirect: '/home'
+  // },
   {
     path: '/',
-    redirect: '/home'
-  }, {
-    path: '/home',
-    name: 'home',
-    component: Home
+    component: layout,
+    // 二级路由
+    children: [
+      {
+      // 什么都不写就是默认子路由 跳转页面会直接显示
+        path: '',
+        component: Home
+      }
+    ]
   },
   {
+    // 一级路由登录页
     path: '/login',
     component: Login
   }
