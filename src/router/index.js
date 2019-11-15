@@ -59,6 +59,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // console.log(to)
   NProgress.start()
+  NProgress.done()
   if (to.path === '/login') {
     // 如果是登录页面，则直接允许通过
     next()
