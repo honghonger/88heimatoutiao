@@ -2,7 +2,7 @@
   <!-- 头部 -->
   <el-row type="flex" justify="space-between" align="middle">
       <!-- 左侧 -->
-      <el-col :span="6" class="left">
+      <el-col :span="7" class="left">
           <i class="el-icon-s-fold">
               <span>江苏传智播客教育科技有限公司</span>
           </i>

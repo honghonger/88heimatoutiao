@@ -7,13 +7,13 @@
         <img src="../../assets/img/logo_admin.png" alt="">
       </div>
       <el-menu router style="width:221px" active-text-color=" #ffd04b" background-color="#353b4c" text-color="#adafb5">
-        <el-menu-item index="/">首页</el-menu-item>
+        <el-menu-item index="/home">首页</el-menu-item>
         <el-submenu index="1">
           <template slot="title">内容管理</template>
           <el-menu-item index="/publish">发布文章</el-menu-item>
           <el-menu-item index="/article">内容列表</el-menu-item>
-          <el-menu-item>评论列表</el-menu-item>
-          <el-menu-item>素材管理</el-menu-item>
+          <el-menu-item index="/comment">评论列表</el-menu-item>
+          <el-menu-item index="image">素材管理</el-menu-item>
         </el-submenu>
  <el-submenu index="2">
           <template slot="title">粉丝管理</template>
@@ -44,7 +44,7 @@
 <script>
 import layoutHeader from '../../components/layout-header.vue'
 export default {
-  name: 'home',
+  // name: '/home',
   components: {
     'layout-header': layoutHeader
   }

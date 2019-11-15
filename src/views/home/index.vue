@@ -14,7 +14,7 @@ export default {
 .home{
   img{
     height: 580px;
-    width: 100%;
+    width: 98%;
   }
    overflow: hidden;
 }

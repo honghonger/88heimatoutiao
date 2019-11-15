@@ -6,6 +6,8 @@ import Home from '@/views/home'
 import Article from '@/views/article'
 import Publish from '@/views/publish'
 import NProgress from 'nprogress'
+import Comment from '@/views/comment'
+import Image from '@/views/image'
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,6 +36,16 @@ const routes = [
       {
         path: '/publish',
         component: Publish
+      },
+      // 评论列表
+      {
+        path: '/comment',
+        component: Comment
+      },
+      // 素材管理
+      {
+        path: '/image',
+        component: Image
       }
     ]
   },
