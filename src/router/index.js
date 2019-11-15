@@ -21,7 +21,7 @@ const routes = [
       {
       // 什么都不写就是默认子路由 跳转页面会直接显示
       // 首页
-        path: '',
+        path: '/home',
         component: Home
       },
       // 文章列表
@@ -55,5 +55,19 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  // console.log(to)
+  if (to.path === '/login') {
+    // 如果是登录页面，则直接允许通过
+    next()
+  } else {
+    // 校验非登录页面
+    const token = window.localStorage.getItem('user-token')
+    if (token) {
+      next()
+    } else {
+      next('/login')
+    }
+  }
+})
 export default router
