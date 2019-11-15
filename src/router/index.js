@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import layout from '../views/layout/index.vue'
 import Login from '../views/login'
 import Home from '@/views/home'
+import Article from '@/views/article'
+import Publish from '@/views/publish'
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,8 +20,19 @@ const routes = [
     children: [
       {
       // 什么都不写就是默认子路由 跳转页面会直接显示
+      // 首页
         path: '',
         component: Home
+      },
+      // 文章列表
+      {
+        path: '/article',
+        component: Article
+      },
+      // 发布文章
+      {
+        path: '/publish',
+        component: Publish
       }
     ]
   },
