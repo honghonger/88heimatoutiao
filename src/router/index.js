@@ -5,6 +5,7 @@ import Login from '../views/login'
 import Home from '@/views/home'
 import Article from '@/views/article'
 import Publish from '@/views/publish'
+import NProgress from 'nprogress'
 Vue.use(VueRouter)
 
 const routes = [
@@ -57,6 +58,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   // console.log(to)
+  NProgress.start()
   if (to.path === '/login') {
     // 如果是登录页面，则直接允许通过
     next()
@@ -69,5 +71,8 @@ router.beforeEach((to, from, next) => {
       next('/login')
     }
   }
+})
+router.afterEach((to, from) => {
+  NProgress.done()
 })
 export default router
