@@ -13,8 +13,8 @@
   </el-form-item>
   <el-form-item label="频道">
     <el-select v-model="article.channel_id" placeholder="请选择活动区域">
-      <el-option label="区域一" value="shanghai"></el-option>
-      <el-option label="区域二" value="beijing"></el-option>
+      <!-- <el-option label="所有频道" :value="null"></el-option> -->
+      <el-option v-for="channel in channels" :key="channel.id" :label="channel.name" :value="channel.id"></el-option>
     </el-select>
   </el-form-item>
   <!-- <el-form-item label="特殊资源">
@@ -24,8 +24,8 @@
     </el-radio-group>
   </el-form-item> -->
   <el-form-item>
-    <el-button type="primary" @click="onSubmit">发表</el-button>
-    <el-button>存入草稿</el-button>
+    <el-button type="primary" @click="onSubmit(false)">发表</el-button>
+    <el-button @click="onSubmit(true)">存入草稿</el-button>
   </el-form-item>
 </el-form>
 </el-card>
@@ -44,12 +44,40 @@ export default {
           images: [] // 图片，无图就是空数组即可
         },
         channel_id: ''
-      }
+      },
+      channels: []
     }
   },
+  created () {
+    this.loadchannels()
+  },
   methods: {
-    onSubmit () {
-      console.log('submit!')
+    onSubmit (draft) {
+      this.$axios({
+        method: 'POST',
+        url: '/articles',
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem('user-token')}` },
+        params: {
+          draft
+        },
+        data: this.article
+      }).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err, '获取失败')
+      })
+    },
+    loadchannels () {
+      this.$axios({
+        method: 'GET',
+        url: '/channels'
+      }).then(res => {
+        // console.log(res)
+        this.channels = res.data.data.channels
+      }).catch(err => {
+        console.log(err, '请求失败')
+      })
     }
   }
 }
