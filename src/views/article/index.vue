@@ -128,17 +128,17 @@ export default {
       // 在我们的项目中，除了 /login 接口不需要 token，其它所有的接口都需要提供 token 才能请求
       // 否则后端返回 401 错误
       // 我们这里的后端要求把 token 放到请求头中
-      const token = window.localStorage.getItem('user-token')
+      // const token = window.localStorage.getItem('user-token')
       this.$axios({
         method: 'GET',
         url: '/articles',
-        headers: { // 添加请求头
+        // headers: { // 添加请求头
         // 名字: 值
         // 后端要求把 token 放到请求头中，使用一个名字叫：Authorization
         // 注意，token的格式要求：Bearer 用户token
         // 注意！！！Bearer有个空格，多了少了都不行
-          Authorization: `Bearer ${token}`
-        },
+        //   Authorization: `Bearer ${token}`
+        // },
         params: {
           page,
           per_page: 10,

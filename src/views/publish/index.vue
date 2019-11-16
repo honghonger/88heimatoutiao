@@ -9,7 +9,19 @@
     <el-input v-model="article.title"></el-input>
   </el-form-item>
    <el-form-item label="内容">
-    <el-input type="textarea" v-model="article.content"></el-input>
+   <!-- bidirectional data binding（双向数据绑定） -->
+  <quill-editor v-model="article.content"
+                ref="myQuillEditor"
+                :options="editorOption">
+                <!-- @blur="onEditorBlur($event)"
+                @focus="onEditorFocus($event)"
+                @ready="onEditorReady($event)" -->
+  </quill-editor>
+  <!-- Or manually control the data synchronization（或手动控制数据流） -->
+  <!-- <quill-editor :content="content"
+                :options="editorOption"
+                @change="onEditorChange($event)">
+  </quill-editor> -->
   </el-form-item>
   <el-form-item label="频道">
     <el-select v-model="article.channel_id" placeholder="请选择活动区域">
@@ -33,7 +45,14 @@
 </template>
 
 <script>
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import { quillEditor } from 'vue-quill-editor'
 export default {
+  components: {
+    quillEditor
+  },
   data () {
     return {
       article: {
@@ -45,7 +64,8 @@ export default {
         },
         channel_id: ''
       },
-      channels: []
+      channels: [],
+      editorOption: {}
     }
   },
   created () {
@@ -56,8 +76,8 @@ export default {
       this.$axios({
         method: 'POST',
         url: '/articles',
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem('user-token')}` },
+        // headers: {
+        //   Authorization: `Bearer ${window.localStorage.getItem('user-token')}` },
         params: {
           draft
         },
