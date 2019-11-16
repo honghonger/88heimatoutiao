@@ -90,6 +90,7 @@
   layout="prev, pager, next"
   :total="totalCount"
   @current-change="onPageChange"
+  :disabled="loading"
   >
 </el-pagination>
   </div>
@@ -109,17 +110,19 @@ export default {
       },
       rangeDate: '',
       articles: [],
-      totalCount: 0
+      totalCount: 0,
+      loading: true
     }
   },
   created () {
-    this.loadArticles()
+    this.loadArticles(1)
   },
   methods: {
     loadArticles (page = 1) {
+      this.loading = true
       // 在我们的项目中，除了 /login 接口不需要 token，其它所有的接口都需要提供 token 才能请求
-    // 否则后端返回 401 错误
-    // 我们这里的后端要求把 token 放到请求头中
+      // 否则后端返回 401 错误
+      // 我们这里的后端要求把 token 放到请求头中
       const token = window.localStorage.getItem('user-token')
       this.$axios({
         method: 'GET',
@@ -140,6 +143,8 @@ export default {
         this.totalCount = res.data.data.total_count
       }).catch(err => {
         console.log(err, '获取数据失败')
+      }).finally(() => {
+        this.loading = false
       })
     },
     onPageChange (page) {
