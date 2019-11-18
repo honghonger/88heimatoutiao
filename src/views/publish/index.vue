@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
   <div slot="header" class="clearfix">
-    <span>发布文章</span>
+    <span>{{$route.params.articleId?'编辑文章':'发布文章'}}</span>
   </div>
   <el-form ref="form" :model="article" label-width="80px">
   <el-form-item label="标题">
@@ -70,9 +70,37 @@ export default {
   },
   created () {
     this.loadchannels()
+    if (this.$route.params.articleId) {
+      this.loadEdting()
+    }
   },
   methods: {
     onSubmit (draft) {
+      if (this.$route.params.articleId) {
+        this.editArticle()
+      } else {
+        this.AddArticle()
+      }
+    },
+    editArticle (draft) {
+      this.$axios({
+        method: 'PUT',
+        url: `/articles/${this.$route.params.articleId}`,
+        params: {
+          draft
+        },
+        data: this.article
+      }).then(res => {
+        this.$message({
+          type: 'success',
+          message: '更新成功'
+        })
+      }).catch(err => {
+        console.log(err)
+        this.$message.error('更新失败')
+      })
+    },
+    AddArticle (draft) {
       this.$axios({
         method: 'POST',
         url: '/articles',
@@ -86,6 +114,17 @@ export default {
         console.log(res)
       }).catch(err => {
         console.log(err, '获取失败')
+      })
+    },
+    loadEdting () {
+      this.$axios({
+        method: 'GET',
+        url: `/articles/${this.$route.params.articleId}`
+      }).then(res => {
+        console.log(res)
+        this.article = res.data.data
+      }).catch(err => {
+        console.log(err, '请求失败')
       })
     },
     loadchannels () {
