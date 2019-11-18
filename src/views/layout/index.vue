@@ -27,7 +27,7 @@
       </el-menu>
     </el-aside>
     <!-- 右侧大容器 -->
-    <el-container>
+    <el-container class="mine">
       <!-- 头部 -->
       <el-header>
         <layout-header></layout-header>
@@ -52,6 +52,7 @@ export default {
 </script>
 <style lang='less' scoped>
 .left {
+  position: fixed;
   width:220px;
   height: 100vh;
   background-color:#353b4e;
@@ -63,5 +64,8 @@ export default {
     height:30px;
   }
  }
+}
+.mine{
+  margin-left: 220px;
 }
 </style>

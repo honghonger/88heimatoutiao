@@ -52,6 +52,7 @@ export default {
 
 <style lang='less' scoped>
  .left {
+  //  margin-left: 220px;
      display: flex;
      align-items: center;
      i {
