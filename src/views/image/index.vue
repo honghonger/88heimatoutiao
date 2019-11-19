@@ -2,12 +2,24 @@
  <el-card class="box-card">
   <div slot="header" class="clearfix">
     <span>图片管理</span>
-     <el-button style="float: right; padding: 3px 0" type="text">上传图片</el-button>
+     <!-- <el-button style="float: right; padding: 3px 0" type="text">上传图片</el-button> -->
   </div>
    <el-radio-group v-model="type" @change="onFind">
       <el-radio-button label="全部">全部</el-radio-button>
       <el-radio-button label="收藏">收藏</el-radio-button>
     </el-radio-group>
+
+<el-upload
+  class="upload-demo"
+  style="float: right; padding: 3px 0"
+  action="http://ttapi.research.itcast.cn/mp/v1_0/user/images"
+   :headers="uploadHeaders"
+    name="image"
+   :on-success="onUploadSuccess"
+  :show-file-list="false">
+  <el-button size="small" type="primary">点击上传</el-button>
+</el-upload>
+
  <el-row :gutter="20">
   <el-col :span="6" v-for="item in images" :key="item.id" class="col">
       <el-card :body-style="{ padding: '0px' }">
@@ -23,11 +35,15 @@
 </template>
 
 <script>
+const token = window.localStorage.getItem('user-token')
 export default {
   data () {
     return {
       images: [],
-      type: '全部'
+      type: '全部',
+      uploadHeaders: {
+        Authorization: `Bearer ${token}`
+      }
     }
   },
   created () {
@@ -85,6 +101,10 @@ export default {
         console.log(err)
         this.$message.error('删除失败')
       })
+    },
+    onUploadSuccess () {
+      // 刷新图片列表
+      this.loadImage(this.type !== '全部')
     }
   }
 }
