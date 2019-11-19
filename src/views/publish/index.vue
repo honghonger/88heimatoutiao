@@ -26,7 +26,8 @@
   <el-form-item label="频道">
     <el-select v-model="article.channel_id" placeholder="请选择活动区域">
       <!-- <el-option label="所有频道" :value="null"></el-option> -->
-      <el-option v-for="channel in channels" :key="channel.id" :label="channel.name" :value="channel.id"></el-option>
+      <el-option v-for="channel in channels" :key="channel.id"
+       :label="channel.name" :value="channel.id"></el-option>
     </el-select>
   </el-form-item>
   <!-- <el-form-item label="特殊资源">
