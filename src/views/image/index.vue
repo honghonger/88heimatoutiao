@@ -25,7 +25,7 @@
       <el-card :body-style="{ padding: '0px' }">
       <img height="250" :src="item.url" class="image">
       <div style="padding: 14px;" class="icon">
-       <i :class="item.is_collected ? 'el-icon-star-on' : 'el-icon-star-off'" @click="onCollect(item)"></i>
+       <i :class="item.is_collected ? 'el-icon-star-on' : 'el-icon-star-off'" @click="onCollect(item)" class="haha"></i>
        <i class="el-icon-delete" @click="onDelete(item)"></i>
       </div>
     </el-card>
@@ -118,6 +118,9 @@ export default {
     // justify-content: center;
     justify-content: space-around;
     font-size: 24px;
+  }
+  .haha{
+    color: red
   }
 }
 </style>

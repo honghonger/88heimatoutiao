@@ -8,6 +8,7 @@ import Publish from '@/views/publish'
 import NProgress from 'nprogress'
 import Comment from '@/views/comment'
 import Image from '@/views/image'
+import users from '@/views/users'
 Vue.use(VueRouter)
 
 const routes = [
@@ -50,6 +51,10 @@ const routes = [
       {
         path: '/image',
         component: Image
+      },
+      {
+        path: '/users',
+        component: users
       }
     ]
   },

@@ -8,14 +8,14 @@
           </i>
       </el-col >
       <!-- 右侧 -->
-      <el-col :span="3" class="right">
+      <el-col :span="4" class="right">
           <!-- 头像 -->
-          <img src="../assets/img/avatar.jpg" alt="">
+          <img width="50" :src="user.photo" alt="">
            <!-- 下拉菜单 -->
            <el-dropdown trigger="click">
-               <span>小柠檬</span>
+               <span>{{user.name}}</span>
                <el-dropdown-menu slot="dropdown">
-                   <el-dropdown-item>账户信息</el-dropdown-item>
+                   <el-dropdown-item @click.native="onNews">账户信息</el-dropdown-item>
                    <el-dropdown-item>git地址</el-dropdown-item>
                    <el-dropdown-item @click.native="onlogout">退出</el-dropdown-item>
                </el-dropdown-menu>
@@ -25,8 +25,35 @@
 </template>
 
 <script>
+import eventBus from '../untis/events-bus'
 export default {
+  data () {
+    return {
+      user: {
+        name: '',
+        photo: ''
+      }
+    }
+  },
+  created () {
+    this.onloadusers()
+    eventBus.$on('abc', user => {
+      this.user.name = user.name
+      this.user.photo = user.photo
+    })
+  },
   methods: {
+    onloadusers () {
+      this.$axios({
+        method: 'GET',
+        url: '/user/profile'
+      }).then(res => {
+        // console.log(res)
+        this.user = res.data.data
+      }).catch(err => {
+        console.log(err, '请求失败')
+      })
+    },
     onlogout () {
       this.$confirm('确定要退出吗?', '提示', {
         confirmButtonText: '确定',
@@ -45,11 +72,14 @@ export default {
           message: '已取消退出'
         })
       })
+    },
+    onNews () {
+      // console.log(111)
+      this.$router.push('/users')
     }
   }
 }
 </script>
-
 <style lang='less' scoped>
  .left {
   //  margin-left: 220px;
