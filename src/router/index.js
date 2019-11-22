@@ -9,6 +9,7 @@ import NProgress from 'nprogress'
 import Comment from '@/views/comment'
 import Image from '@/views/image'
 import users from '@/views/users'
+import Fans from '@/views/fans'
 Vue.use(VueRouter)
 
 const routes = [
@@ -55,6 +56,10 @@ const routes = [
       {
         path: '/users',
         component: users
+      },
+      {
+        path: '/fans',
+        component: Fans
       }
     ]
   },

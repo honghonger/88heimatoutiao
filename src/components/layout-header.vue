@@ -27,6 +27,7 @@
 <script>
 import eventBus from '../untis/events-bus'
 export default {
+  name: 'LayoutHeader',
   data () {
     return {
       user: {
@@ -49,6 +50,7 @@ export default {
         url: '/user/profile'
       }).then(res => {
         // console.log(res)
+        console.log('header', res)
         this.user = res.data.data
       }).catch(err => {
         console.log(err, '请求失败')
@@ -96,6 +98,8 @@ export default {
      display: flex;
      align-items: center;
      img {
+       width: 50px;
+       height: 50px;
          border-radius: 50%;
          margin-right:5px;
      }

@@ -9,7 +9,7 @@
   :show-file-list="false"
   :http-request='onUpload'
   >
-  <img width="100" :src="user.photo" class="image">
+  <img :src="user.photo" class="image">
   <div>点击选择上传用户头像</div>
 </el-upload>
   </el-form-item>
@@ -34,6 +34,7 @@
 <script>
 import eventBus from '../../untis/events-bus'
 export default {
+  name: 'AccountPage',
   data () {
     return {
       user: {
@@ -64,6 +65,7 @@ export default {
           type: 'success',
           message: '修改成功'
         })
+        eventBus.$emit('abc', this.user)
         // this.$router.push('/home')
       }).catch(err => {
         console.log(err)
@@ -76,7 +78,8 @@ export default {
         url: '/user/profile'
       }).then(res => {
         // 更新用户信息成功后通知头部组件，传个参数，让头部组件接收
-        eventBus.$emit('abc', this.user)
+
+        // eventBus.$emit('abc', this.user)
         // console.log(res)
         this.user = res.data.data
       }).catch(err => {
@@ -103,6 +106,11 @@ export default {
 <style lang="less" scoped>
 .users{
     text-align: center;
+    img{
+      width: 100px;
+      height: 100px;
+    border-radius: 50%
+    }
 }
 
 </style>
